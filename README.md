@@ -125,7 +125,7 @@ _Request Body_
     "due_date": "2020-10-10",
 }
 ```
-_Response (200)_
+_Response (201 - Created)_
 ```
 {
     "todo": {
@@ -140,7 +140,7 @@ _Response (200)_
 }
 ```
 
-_Response (500 - Internal Server Error)_
+_Response (400 - Bad Request)_
 ```
 {
     "message": "Validation error: Validation notEmpty on description failed"
@@ -154,3 +154,100 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
+
+### PUT /todos/:id
+> Edit todo item in database by id
+_Request Header_
+```
+{
+  "access_token": "application/json; charset=utf-8"
+}
+```
+_Request Body_
+```
+{
+    "title": "edited title1",
+    "description": "edited description1",
+    "status": "completed",
+    "due_date": "2020-10-10",
+}
+```
+_Response (201 - OK)_
+```
+{
+    "todo": {
+        "id": 1,
+        "title": "edited title1",
+        "description": "edited description1",
+        "status": "completed",
+        "due_date": "2020-10-10T00:00:00.000Z",
+        "createdAt": "2020-03-30T09:40:40.159Z",
+        "updatedAt": "2020-03-30T10:34:44.625Z"
+    }
+}
+```
+
+_Response (400 - Bad Request)_
+```
+{
+    "message": "Validation error: Validation notEmpty on description failed"
+}
+```
+
+_Response (404 - Not Found)_
+```
+{
+    "message": "Todo not found"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+  "message": "<returned error message>"
+}
+```
+---
+
+### DELETE /todos/:id
+> Delete todo item from database by id
+_Request Header_
+```
+{
+  "access_token": "application/json; charset=utf-8"
+}
+```
+_Request Body_
+```
+not needed
+```
+_Response (201 - OK)_
+```
+{
+    "todo": {
+        "id": 5,
+        "title": "title5",
+        "description": "description5",
+        "status": "pending",
+        "due_date": "2020-10-10T00:00:00.000Z",
+        "createdAt": "2020-03-30T10:27:32.223Z",
+        "updatedAt": "2020-03-30T10:27:32.223Z"
+    }
+}```
+
+_Response (404 - Not Found)_
+```
+{
+    "message": "Todo not found"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+  "message": "<returned error message>"
+}
+```
+---
+
+

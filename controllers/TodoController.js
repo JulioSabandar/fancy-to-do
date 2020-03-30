@@ -40,22 +40,23 @@ class TodoController{
     static editTodoById(req, res){
         let id = req.params.id;
         const {title, description, status, due_date} = req.body;
-        let todo;
         Todo.findByPk(id)
-            .then( todoX => {
-                if(todoX){
-                    todo = todoX;
+            .then(todo => {
+                if(todo){
                     return Todo.update({
                         title : title,
                         description : description,
                         status : status,
                         due_date : due_date
-                    }, {where : {id : id}});
+                    }, {where : {id : id}})
                 }else{
-                    res.status(404).json({message : 'Todo not found'});
+                    res.status(404).json({message : 'Todo not found'})
                 }
             })
             .then(()=> {
+                return Todo.findByPk(id)
+            })
+            .then((todo)=> {
                 res.status(200).json({todo});
             })
             .catch( err => {
