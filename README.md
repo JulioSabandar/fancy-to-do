@@ -233,7 +233,8 @@ _Response (201 - OK)_
         "createdAt": "2020-03-30T10:27:32.223Z",
         "updatedAt": "2020-03-30T10:27:32.223Z"
     }
-}```
+}
+```
 
 _Response (404 - Not Found)_
 ```
