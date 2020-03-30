@@ -6,7 +6,7 @@ class TodoController{
                 res.status(200).json({todos});
             })
             .catch((err)=>{
-                res.status(500).json(err);
+                res.status(500).json({message : err.message});
             });
     }
     static addTodo (req, res){
@@ -17,9 +17,9 @@ class TodoController{
             })
             .catch(err => {
                 if(err.name == 'SequelizeValidationError'){
-                    res.status(400).json(err);
+                    res.status(400).json({message : err.message});
                 }else{
-                    res.status(500).json(err);
+                    res.status(500).json({message : err.message});
                 }
             });
     }
@@ -60,9 +60,9 @@ class TodoController{
             })
             .catch( err => {
                 if(err.name == 'SequelizeValidationError'){
-                    res.status(400).json(err);
+                    res.status(400).json({message : err.message});
                 }else{
-                    res.status(500).json(err);
+                    res.status(500).json({message : err.message});
                 }
             });
     }
@@ -82,9 +82,8 @@ class TodoController{
                 res.status(200).json({todo});
             })
             .catch(err => {
-                res.status(500).json(err);
+                res.status(500).json({message : err.message});
             })    
     }
-
 }
 module.exports = TodoController;
