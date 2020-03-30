@@ -10,10 +10,6 @@ class TodoController{
             });
     }
     static addTodo (req, res){
-        console.log('aaaa')
-        console.log(req.body);
-        console.log('bbbb')
-
         const {title, description, status, due_date} = req.body;
         Todo.create({title, description, status, due_date})
             .then(todo => {
@@ -44,18 +40,23 @@ class TodoController{
     static editTodoById(req, res){
         let id = req.params.id;
         const {title, description, status, due_date} = req.body;
-        Todo.update({
-            title : title,
-            description : description,
-            status : status,
-            due_date : due_date
-        }, {where : {id : id}})
-            .then( todo => {
-                if(todo){
-                    res.status(200).json({todo});
+        let todo;
+        Todo.findByPk(id)
+            .then( todoX => {
+                if(todoX){
+                    todo = todoX;
+                    return Todo.update({
+                        title : title,
+                        description : description,
+                        status : status,
+                        due_date : due_date
+                    }, {where : {id : id}});
                 }else{
-                    res.status(404).json({message : 'Todo not found'})
+                    res.status(404).json({message : 'Todo not found'});
                 }
+            })
+            .then(()=> {
+                res.status(200).json({todo});
             })
             .catch( err => {
                 if(err.name == 'SequelizeValidationError'){
@@ -65,20 +66,24 @@ class TodoController{
                 }
             });
     }
-    static deleteTodoById (){
+    static deleteTodoById (req, res){
         let id = req.params.id;
-        Todo.destroy({where:{id:id}})
-            .then( todo => {
-                if(todo){
-                    res.status(200).json({todo});
+        let todo;
+        Todo.findByPk(id)
+            .then( todoX => {
+                if(todoX){
+                    todo = todoX;
+                    return Todo.destroy({where:{id:id}});
                 }else{
-
+                    res.status(404).json({message : 'Todo not found'});
                 }
             })
-            .catch( err => {
+            .then(()=> {
+                res.status(200).json({todo});
+            })
+            .catch(err => {
                 res.status(500).json(err);
-            });
-
+            })    
     }
 
 }

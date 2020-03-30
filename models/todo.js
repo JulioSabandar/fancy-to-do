@@ -7,28 +7,24 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
       validate: {
-        allowNull:false,
         notEmpty: true
       }
     },
     description: {
       type: DataTypes.STRING,
       validate: {
-        allowNull:false,
         notEmpty: true
       }
     },
     status: {
       type: DataTypes.STRING,
       validate: {
-        allowNull:false,
         notEmpty: true
       }
     },
     due_date: {
       type: DataTypes.DATE,
       validate: {
-        allowNull:false,
         notEmpty: true
       }
     }
