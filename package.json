@@ -1,7 +1,7 @@
 {
   "name": "fancy-to-do",
   "version": "1.0.0",
-  "description": "",
+  "description": "fancy-to-do is an app to manage your todo list. This app has : * RESTful endpoint for asset's CRUD operation * JSON formatted response",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/JulioSabandar/fancy-to-do#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.2",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "sequelize": "^5.21.5"
   },
   "devDependencies": {

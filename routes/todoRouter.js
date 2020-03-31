@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const TodoRouter = Router();
+const todoRouter = Router();
 const Controller = require('../controllers/TodoController');
-TodoRouter.get('/', Controller.showTodos);
-TodoRouter.post('/', Controller.addTodo);
-TodoRouter.get('/:id', Controller.showTodoById);
-TodoRouter.put('/:id', Controller.editTodoById);
-TodoRouter.delete('/:id', Controller.deleteTodoById);
-module.exports = TodoRouter;
+todoRouter.get('/', Controller.showTodos);
+todoRouter.post('/', Controller.addTodo);
+todoRouter.get('/:id', Controller.showTodoById);
+todoRouter.put('/:id', Controller.editTodoById);
+todoRouter.delete('/:id', Controller.deleteTodoById);
+module.exports = todoRouter;

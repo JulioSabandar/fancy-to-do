@@ -1,4 +1,5 @@
 'use strict';
+const hashPassword = require('../helpers/hashPassword');
 module.exports = (sequelize, DataTypes) => {
   const Sequelize = sequelize.Sequelize;
   const Model = Sequelize.Model;
@@ -16,7 +17,14 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     }
-  }, { sequelize });
+  }, { 
+    sequelize, 
+      hooks : {
+        beforeCreate : (user, option) => {
+          user.password = hashPassword(user.password);
+        }
+      }
+  });
   User.associate = function(models) {
     // associations can be defined here
   };
