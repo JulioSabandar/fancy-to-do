@@ -27,10 +27,13 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: true
       }
+    },
+    UserId: {
+      type: DataTypes.INTEGER
     }
   }, {sequelize});
   Todo.associate = function(models) {
-    // associations can be defined here
+    Todo.belongsTo(models.User)
   };
   return Todo;
 };
