@@ -26,11 +26,11 @@ class UserController {
                     res.status(400).json({message : 'Invalid Username'});
                 }else{
                     if(checkPassword(input.password, user.password)){
-                        const token = jwt.sign({
-                            userId : input.id,
-                            email : input.email
+                        const accessToken = jwt.sign({
+                            userId : user.id,
+                            email : user.email
                         }, 'rahasia');
-                        res.status(201).json({token});
+                        res.status(201).json({accessToken});
                     }else{
                         res.status(400).json({message : 'Invalid Password'});
                     }

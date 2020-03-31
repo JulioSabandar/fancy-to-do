@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 function authentication(req, res, next){
-    const accessToken = req.headers.accessToken;
+    const accessToken = req.headers.accesstoken;
     try{
         if(!accessToken){
             res.status(404).json({
@@ -9,6 +9,7 @@ function authentication(req, res, next){
             })
         }else{
             const decoded = jwt.verify(accessToken, 'rahasia');
+            console.log(decoded)
             req.userId = decoded.userId;
             req.email = decoded.email;
             next();
