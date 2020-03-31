@@ -28,7 +28,6 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     }
-
   }, {sequelize});
   Todo.associate = function(models) {
     // associations can be defined here
