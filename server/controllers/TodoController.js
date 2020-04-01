@@ -108,13 +108,10 @@ class TodoController{
                 console.log(result.data)
                 let date = result.data.data.date.readable;
                 let timings = result.data.data.timings;
-                let timezone = result.data.data.meta.timezone;
-                console.log(timings)
-                console.log(date)
                 let addedTimes = [];
                 for(let key in timings){
                     if(key != 'Sunrise' && key != 'Sunset' && key != 'Midnight' && key != 'Imsak'){
-                        let dtstring = date + ' ' + timings[key] + ':00 ' + timezone;
+                        let dtstring = date + ' ' + timings[key] + ':00';
                         console.log(dtstring);
                         Todo.create({
                             title : 'Pray',
@@ -123,15 +120,11 @@ class TodoController{
                             due_date : dtstring,
                             UserId : req.userId
                         })
-                        .then(todo => {
-                            addedTimes.push(todo);
-                        })
                         .catch(err => {
                             res.status(400).json({message : err.message});
                         })
                     }
                 }
-                if(addedTimes );
             })
             .then( todos => {
                 res.status(200).json({todos})
