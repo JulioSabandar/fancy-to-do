@@ -3,9 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do List Sakti</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body>
+<body>    
+    <h2 id="message"></h2>  
+    <div id="homeDiv">
+        <button id ="logInMenu" type="button" class="btn btn-primary">Log In</button>
+        <button id ="signUpMenu" type="button" class="btn btn-success">Sign Up</button>
+    </div>
+    <div id="logInDiv">
+        <h1>Log In</h1>
+        <form id ="loginForm">
+            <div class="form-group">
+                <label for="emailLog">Email address</label>
+                <input type="email" class="form-control" id="emailLog" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+                <label for="passwordLog">Password</label>
+                <input type="password" class="form-control" id="passwordLog">
+            </div>
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>              
+    </div>
+
+    <div id="signUpDiv">
+        <h1>Sign Up</h1>
+        <form id = "signupForm">
+            <div class="form-group">
+                <label for="emailSign">Email address</label>
+                <input type="email" class="form-control" id="emailSign" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+                <label for="passwordSign">Password</label>
+                <input type="password" class="form-control" id="passwordSign">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>              
+    </div>
+
+    <div id="actionButtons">
+        <button id="addButton" type="button" class="btn btn-primary">Add Todo</button>
+        <button id="prayButton" type="button" class="btn btn-primary">Pray Today</button>
+    </div>
+    <div id="todoListDiv">
+        <h1>To Do List</h1>
+        <table id ="todoTable">
+            <thead>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Due Date</th>   
+                <th>Actions</th> 
+            </thead>
+            <tbody id ="tableBody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div id="addToDoDiv">
+        <h1>Add Item</h1>
+        <form id ="addForm">
+            <div class="form-group">
+                <label for="titleAdd">Title</label>
+                <input type="text" class="form-control" id="titleAdd">
+            </div>
+            <div class="form-group">
+                <label for="descriptionAdd">Description</label>
+                <input type="text" class="form-control" id="descriptionAdd">
+            </div>
+            <div class="form-group">
+                <label for="statusAdd">Status</label>
+                <input type="text" class="form-control" id="statusAdd">
+            </div>
+            <div class="form-group">
+                <label for="due_dateAdd">Due Date</label>
+                <input type="date" class="form-control" id="due_dateAdd">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Item</button>
+        </form>              
+    </div>
+
+    <div id="editToDoDiv">
+        <h1>Edit Item</h1>
+        <form id ="editForm">
+            <div class="form-group">
+                <label for="titleEdit">Title</label>
+                <input type="text" class="form-control" id="titleEdit">
+            </div>
+            <div class="form-group">
+                <label for="descriptionEdit">Description</label>
+                <input type="text" class="form-control" id="descriptionEdit">
+            </div>
+            <div class="form-group">
+                <label for="statusEdit">Status</label>
+                <input type="text" class="form-control" id="statusEdit">
+            </div>
+            <div class="form-group">
+                <label for="due_dateEdit">Due Date</label>
+                <input type="date" class="form-control" id="due_dateEdit">
+            </div>
+            <button type="submit" class="btn btn-primary">Edit Item</button>
+        </form>              
+    </div>
     
+    <h2 id="message2"></h2>
+    <button id="logoutButton" type="button" class="btn btn-danger">Log Out</button>
+
+    <script src="main.js"></script>    
 </body>
 </html>
