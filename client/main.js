@@ -35,7 +35,7 @@ $(document).ready(function(){
             console.log(data);
             checkLogIn();
         }).fail(err => {
-            console.log(err)
+            $('#message').text(JSON.parse(err.responseText).message);
         })
     })
     $('#todoTable').on("click", "#editButton", (e)=> {
@@ -81,7 +81,7 @@ $(document).ready(function(){
             })
 
         }).fail(err => {
-            console.log(err);
+            $('#message').text(JSON.parse(err.responseText).message);
         })
     })
     
@@ -97,7 +97,7 @@ $(document).ready(function(){
             console.log(data);
             checkLogIn();
         }).fail(err => {
-            console.log(err);
+            $('#message').text(JSON.parse(err.responseText).message);
         })
     })
 
@@ -166,9 +166,10 @@ $(document).ready(function(){
         }).done((data)=> {
             console.log(data);
             checkLogIn();
+        }).fail(err=>{
+            $('#message').text(JSON.parse(err.responseText).message);
         })
     })
-
 });
 function checkLogIn(){
     console.log('check log in')
@@ -228,6 +229,8 @@ function getTodos(){
                 $('#todoTable').hide();
                 $('#message2').text('You have nothing to do')
             }
-        })
+        }).fail(err => {
+            $('#message').text(JSON.parse(err.responseText).message);
+        });
     } 
 }
