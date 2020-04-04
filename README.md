@@ -101,6 +101,13 @@ _Response (200)_
 }
 ```
 
+_Response (400)_
+```javascript
+{
+  "message": "Access Forbidden"
+}
+```
+
 _Response (404 - Not Found)_
 ```
 {
@@ -146,6 +153,13 @@ _Response (201 - Created)_
         "updatedAt": "2020-03-30T10:16:22.966Z",
         "createdAt": "2020-03-30T10:16:22.966Z"
     }
+}
+```
+
+_Response (400)_
+```javascript
+{
+  "message": "Access Forbidden"
 }
 ```
 
@@ -195,6 +209,13 @@ _Response (201 - OK)_
         "createdAt": "2020-03-30T09:40:40.159Z",
         "updatedAt": "2020-03-30T10:34:44.625Z"
     }
+}
+```
+
+_Response (400)_
+```javascript
+{
+  "message": "Access Forbidden"
 }
 ```
 
@@ -248,6 +269,14 @@ _Response (201 - OK)_
     }
 }
 ```
+
+_Response (400)_
+```javascript
+{
+  "message": "Access Forbidden"
+}
+```
+
 
 _Response (404 - Not Found)_
 ```
