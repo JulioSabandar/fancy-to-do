@@ -387,7 +387,7 @@ _Request Header_
 _Request Body_
 ```
 {
-   "token": <id_token>,
+   "token": "<id_token>",
 }
 ```
 
