@@ -13,6 +13,7 @@ $(document).ready(function(){
     $('#logoutButton').click(()=>{
         localStorage.setItem("accessToken", '');
         checkLogIn();
+        logOut();
         $('#message').text('Log Out Success')
     })
     $('#addButton').click(()=> {
@@ -20,8 +21,9 @@ $(document).ready(function(){
         $('#todoListDiv').hide();
         $('#actionButtons').hide();
     })
-    $('#prayButton').click(()=> {
-        $.ajax({
+    $('#prayButton').click((e)=> {
+        e.preventDefault();
+        return $.ajax({
             url: 'http://localhost:5000/todos/pray/',
             method: 'POST',
             data: {
@@ -39,6 +41,7 @@ $(document).ready(function(){
         })
     })
     $('#todoTable').on("click", "#editButton", (e)=> {
+        e.preventDefault();
         let id = e.target.value;
         $('#editToDoDiv').show();
         $('#todoListDiv').hide();
@@ -146,7 +149,6 @@ $(document).ready(function(){
         });
     });
     $('#addForm').submit((e) => {
-        e.preventDefault();
         let title = $('#titleAdd').val();
         let description = $('#descriptionAdd').val();
         let status = $('#statusAdd').val();
@@ -189,6 +191,7 @@ function checkLogIn(){
         $('#logInDiv').hide();
         $('#signUpDiv').hide();
         $('#actionButtons').show();
+        $('#todoListDiv').show();
         getTodos();
         $('#addToDoDiv').hide();
         $('#editToDoDiv').hide();
@@ -198,7 +201,7 @@ function checkLogIn(){
 
 function getTodos(){
     if (localStorage.getItem('accessToken') != null && localStorage.getItem('accessToken') !=''){
-        $.ajax({
+        return $.ajax({
             url: "http://localhost:5000/todos",
             type: "GET",
             headers: {
@@ -223,7 +226,7 @@ function getTodos(){
                     `)    
                 }
                 $('#todoListDiv').show();
-
+                $('#message2').text('')
             }else{
                 console.log('hfsdjnfwjfwfn')
                 $('#todoTable').hide();
@@ -233,4 +236,27 @@ function getTodos(){
             $('#message').text(JSON.parse(err.responseText).message);
         });
     } 
+}
+
+function onSignIn(googleUser) {
+    var id_token = googleUser.getAuthResponse().id_token;
+    $.ajax({
+        method : 'POST',
+        url: 'http://localhost:5000/loginGoogle',
+        data : {
+            token: id_token
+        },
+        statusCode: {
+            200: function (response) {
+                localStorage.setItem('accessToken', response.accessToken);
+                checkLogIn();
+            }
+        }
+    })
+}
+function logOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+        console.log('User signed out.');
+    });
 }

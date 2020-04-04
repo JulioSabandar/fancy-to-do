@@ -108,23 +108,22 @@ class TodoController{
                 console.log(result.data)
                 let date = result.data.data.date.readable;
                 let timings = result.data.data.timings;
-                let addedTimes = [];
+                let bulk = [];
                 for(let key in timings){
                     if(key != 'Sunrise' && key != 'Sunset' && key != 'Midnight' && key != 'Imsak'){
                         let dtstring = date + ' ' + timings[key] + ':00';
                         console.log(dtstring);
-                        Todo.create({
+                        let obj = {
                             title : 'Pray',
                             description : key,
                             status : 'Manditory',
                             due_date : dtstring,
                             UserId : req.userId
-                        })
-                        .catch(err => {
-                            res.status(400).json({message : err.message});
-                        })
+                        }
+                        bulk.push(obj);
                     }
                 }
+                return Todo.bulkCreate(bulk);
             })
             .then( () => {
                 res.status(200).json({message: 'Added 5 Prayers for today'})
