@@ -222,6 +222,7 @@ _Response (500 - Internal Server Error)_
 
 ### DELETE /todos/:id
 > Delete todo item from database by id
+
 _Request Header_
 ```
 {
@@ -263,7 +264,7 @@ _Response (500 - Internal Server Error)_
 ```
 ---
 
-### DELETE /pray
+### POST /pray
 > Add 5 daily prayers to list
 
 _Request Header_
