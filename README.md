@@ -117,6 +117,7 @@ _Response (500 - Internal Server Error)_
 ---
 ### POST /todos
 > Add todo item to database
+
 _Request Header_
 ```
 {
@@ -165,6 +166,7 @@ _Response (500 - Internal Server Error)_
 
 ### PUT /todos/:id
 > Edit todo item in database by id
+
 _Request Header_
 ```
 {
